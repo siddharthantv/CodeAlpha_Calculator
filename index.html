@@ -1,0 +1,41 @@
+<!-- === TASK 1: IMAGE GALLERY === -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #fff; margin: 0; padding: 0; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; padding: 20px; }
+    .gallery img { width: 100%; border-radius: 8px; transition: 0.3s; cursor: pointer; }
+    .gallery img:hover { transform: scale(1.05); }
+    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+    .lightbox img { max-width: 90%; max-height: 80%; }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <img src="https://placekitten.com/400/300" alt="Kitten 1">
+    <img src="https://placekitten.com/401/301" alt="Kitten 2">
+    <img src="https://placekitten.com/402/302" alt="Kitten 3">
+    <img src="https://placekitten.com/403/303" alt="Kitten 4">
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.onclick = () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      };
+    });
+    lightbox.onclick = () => lightbox.style.display = 'none';
+  </script>
+</body>
+</html>
